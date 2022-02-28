@@ -2,7 +2,7 @@ const video = document.querySelector("video")
 const btn = document.getElementById("btn")
 const textElem = document.querySelector("[data-text]")
 var front = false;
-document.getElementById('btn').onclick = function() { front = !front; };
+document.getElementById('flip-btn').onclick = function() { front = !front; };
 
 var constraints = { video: { facingMode: (front? "user" : "environment") } };
 
