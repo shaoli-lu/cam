@@ -1,11 +1,6 @@
 const video = document.querySelector("video")
 const btn = document.getElementById("btn")
 const textElem = document.querySelector("[data-text]")
-var front = false;
-document.getElementById('flip-btn').onclick = function() { front = !front; };
-
-var constraints = { video: { facingMode: (front? "user" : "environment") } };
-
 video.setAttribute('autoplay', '');
 video.setAttribute('muted', '');
 video.setAttribute('playsinline', '');
@@ -16,8 +11,8 @@ async function setup() {
   video.addEventListener("playing", async () => {
     const worker = Tesseract.createWorker()
     await worker.load()
-    await worker.loadLanguage("chi_sim")
-    await worker.initialize("chi_sim")
+    await worker.loadLanguage("eng")
+    await worker.initialize("eng")
 
     const canvas = document.createElement("canvas")
     canvas.width = video.width
@@ -33,7 +28,7 @@ async function setup() {
       } = await worker.recognize(canvas)
 
       var msg = new SpeechSynthesisUtterance(text.replace(/\s/g, " "));
-      msg.lang = 'zh';
+     // msg.lang = 'zh';
       speechSynthesis.speak(
         msg
       )
@@ -50,7 +45,7 @@ async function setup() {
         } = await worker.recognize(canvas)
   
         var msg = new SpeechSynthesisUtterance(text.replace(/\s/g, " "));
-        msg.lang = 'zh';
+       // msg.lang = 'zh';
         speechSynthesis.speak(
           msg
         )
